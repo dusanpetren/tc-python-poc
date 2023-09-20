@@ -1,1 +1,1 @@
-# tc-python-poc
+# TeamCity Python pipeline-as-a-code POC.
