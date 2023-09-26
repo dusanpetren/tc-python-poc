@@ -48,6 +48,8 @@ object Cicd : BuildType({
             environment = venv {
             }
             command = pytest {
+                isCoverageEnabled = true
+
             }
         }
         python {
