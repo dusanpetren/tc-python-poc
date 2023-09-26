@@ -3,7 +3,6 @@ import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.buildSteps.python
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
-import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -32,8 +31,6 @@ version = "2023.05"
 project {
 
     buildType(Cicd)
-
-    subProject(AoC2022Kotlin)
 }
 
 object Cicd : BuildType({
@@ -74,43 +71,5 @@ object Cicd : BuildType({
     features {
         perfmon {
         }
-    }
-})
-
-
-object AoC2022Kotlin : Project({
-    name = "AoC 2022 Kotlin"
-
-    vcsRoot(AoC2022Kotlin_HttpsGithubComDusanpetrenAoC2022KotlinRefsHeadsMain)
-
-    buildType(AoC2022Kotlin_Build)
-})
-
-object AoC2022Kotlin_Build : BuildType({
-    name = "Build"
-
-    vcs {
-        root(AoC2022Kotlin_HttpsGithubComDusanpetrenAoC2022KotlinRefsHeadsMain)
-    }
-
-    triggers {
-        vcs {
-        }
-    }
-
-    features {
-        perfmon {
-        }
-    }
-})
-
-object AoC2022Kotlin_HttpsGithubComDusanpetrenAoC2022KotlinRefsHeadsMain : GitVcsRoot({
-    name = "https://github.com/dusanpetren/AoC-2022-Kotlin#refs/heads/main"
-    url = "https://github.com/dusanpetren/AoC-2022-Kotlin"
-    branch = "refs/heads/main"
-    branchSpec = "refs/heads/*"
-    authMethod = password {
-        userName = "dusanpetren"
-        password = "credentialsJSON:78fceeaa-b8a7-408c-a626-2afd78ca8237"
     }
 })
